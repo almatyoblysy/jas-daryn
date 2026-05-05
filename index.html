@@ -233,6 +233,10 @@ h3 {
   opacity: 1;
   transform: translateX(0);
 }
+.insta-wrap {
+  display: flex;
+  justify-content: center;
+}
 
 </style>
 
@@ -424,6 +428,21 @@ h3 {
   `;
 }
 
+// 📱 Instagram
+if(link.includes("instagram.com")){
+  let clean = link.split("?")[0];
+
+  return `
+    <div class="insta-wrap">
+      <blockquote class="instagram-media"
+        data-instgrm-permalink="${clean}"
+        data-instgrm-version="14"
+        style="max-width:540px; width:100%;">
+      </blockquote>
+    </div>
+  `;
+}
+
   // 🎬 MP4 direct
   if(link.includes(".mp4")){
     return `
@@ -466,6 +485,19 @@ fetch("https://opensheet.elk.sh/1K8hBvvjb8mc3PGkHs_pxB_BY_hHHdR7NGGK0fwBn0lo/New
 
  document.getElementById("news").innerHTML = html;
 
+// 🔥 animation
+setTimeout(() => {
+  document.querySelectorAll(".news-item").forEach(el => {
+    el.classList.add("active");
+  });
+
+  // 🔥 Instagram-ды іске қосу
+  if (window.instgrm) {
+    window.instgrm.Embeds.process();
+  }
+
+}, 250);
+
  // 🔥 animation trigger
  setTimeout(() => {
    document.querySelectorAll(".news-item").forEach(el => {
@@ -501,6 +533,8 @@ fetch("https://opensheet.elk.sh/1K8hBvvjb8mc3PGkHs_pxB_BY_hHHdR7NGGK0fwBn0lo/Doc
     <a href="https://www.youtube.com/@jasdaryn8505" target="_blank">YouTube</a>
   </div>
 </div>
+
+<script async src="https://www.instagram.com/embed.js"></script>
 
 </body>
 </html>
